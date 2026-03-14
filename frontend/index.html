@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Bank</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🏦 Architecture Bank</h1>
+        <nav>
+            <button class="tab-btn active" data-tab="customers">Clientes</button>
+            <button class="tab-btn" data-tab="transfer">Nueva Transferencia</button>
+            <button class="tab-btn" data-tab="history">Historial</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Clientes -->
+        <section id="customers" class="tab-content active">
+            <h2>Gestión de Clientes</h2>
+
+            <div class="card">
+                <h3>Crear Nuevo Cliente</h3>
+                <form id="create-customer-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nombre</label>
+                            <input type="text" id="firstName" required placeholder="Ej: Juan">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Apellido</label>
+                            <input type="text" id="lastName" required placeholder="Ej: Pérez">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accountNumber">Número de Cuenta</label>
+                            <input type="text" id="accountNumber" required placeholder="Ej: ACC001">
+                        </div>
+                        <div class="form-group">
+                            <label for="balance">Saldo Inicial</label>
+                            <input type="number" id="balance" required step="0.01" min="0" placeholder="Ej: 5000.00">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Cliente</button>
+                </form>
+                <div id="customer-msg" class="msg" hidden></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Lista de Clientes</h3>
+                    <button id="refresh-customers" class="btn btn-secondary">Refrescar</button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="customers-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Nro. Cuenta</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <p id="customers-empty" class="empty-msg" hidden>No hay clientes registrados.</p>
+            </div>
+        </section>
+
+        <!-- Sección Transferencia -->
+        <section id="transfer" class="tab-content">
+            <h2>Nueva Transferencia</h2>
+            <div class="card">
+                <form id="transfer-form">
+                    <div class="form-group">
+                        <label for="senderAccount">Cuenta Origen</label>
+                        <input type="text" id="senderAccount" required placeholder="Ej: ACC001">
+                    </div>
+                    <div class="form-group">
+                        <label for="receiverAccount">Cuenta Destino</label>
+                        <input type="text" id="receiverAccount" required placeholder="Ej: ACC002">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Monto</label>
+                        <input type="number" id="amount" required step="0.01" min="0.01" placeholder="Ej: 1500.00">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Transferir</button>
+                </form>
+                <div id="transfer-msg" class="msg" hidden></div>
+            </div>
+        </section>
+
+        <!-- Sección Historial -->
+        <section id="history" class="tab-content">
+            <h2>Historial de Transacciones</h2>
+            <div class="card">
+                <form id="history-form" class="inline-form">
+                    <div class="form-group">
+                        <label for="historyAccount">Número de Cuenta</label>
+                        <input type="text" id="historyAccount" required placeholder="Ej: ACC001">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div>
+
+            <div class="card" id="history-results" hidden>
+                <h3>Transacciones</h3>
+                <div class="table-wrapper">
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cuenta Origen</th>
+                                <th>Cuenta Destino</th>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <p id="transactions-empty" class="empty-msg" hidden>No se encontraron transacciones para esta cuenta.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/customers.js"></script>
+    <script src="js/transactions.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
