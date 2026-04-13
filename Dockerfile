@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # El build.yml ya construyó el JAR con el frontend incluido, solo lo copiamos
